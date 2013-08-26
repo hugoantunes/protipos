@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta content="" name="description"/>
+        <meta content="" name="keywords" />
+        <meta property="og:image" content="" />
+        <meta property="og:title" content="" />
+        <meta property="og:description" content="" />
+        <title></title>
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/grid/css3-mediaqueries.js"></script>
+        
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/grid/1140.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/grid/ie.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/grid/styles.css" />
+
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/base.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/design.css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ STATIC_URL }}css/fotografia.css" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/galeria.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.botao, .opcao-design, .opcao-fotografia').click(function(){
+                    $indicador = $('.botao .indicador');
+                    if ($indicador.css('left') == '2px'){
+                        $indicador.animate({left:20}, 200, function(){
+                            $('body').addClass('fotografia').removeClass('design');
+                        });
+                    } else {
+                        $indicador.animate({
+                            left:2
+                            }, 200, function(){
+                                $('body').addClass('design').removeClass('fotografia');
+                            }
+                        );
+                    }
+                });
+            });//$(document)
+        </script>
+    </head>
+    <body class="design">
+        <header class="container">
+
+            <div class="row">
+                <div class="onecol"></div>
+                <a name='topo'></a>
+                <div class="tencol barra-topo"></div>
+            </div>
+
+            <div class="row">
+                <div class="onecol"></div>
+                <div class="tencol">
+                    <span class="letra-inicial"></span>
+                    <div class="cabecalho"> 
+                        <span class="assinatura">elena Rodrigues
+                        </span>
+                        <ul class="menu">
+                            <li class="item-menu selecionado">
+                                portifólio
+                            </li>
+                            <li class="item-menu">
+                                <a href="#contatos">contato</a>
+                            </li>
+                            <li class="item-menu">
+                                <a href="#about">sobre</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="threecol"></div>
+                <div class="sixcol layout">
+                    <span class="opcao-design">design</span>
+                    <span class="botao">
+                        <span class="indicador"></span>
+                    </span>
+                    <span class="opcao-fotografia">fotografia</span>
+                </div>
+            </div>
+
+        </header>
+
+        <section class="container">
+            <div class="row">
+                <div class="onecol"></div>
+                <div class="tencol">
+                    <ul class="lista-projetos"> 
+                        {% for item in trabalhos %}
+                            {% include "includes/trabalhos.html" %} 
+                        {% endfor %}
+                        
+                        {% for item in fotografias %}
+                            {% include "includes/trabalhos.html" %} 
+                        {% endfor %}
+                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="container">
+            <div class="row">
+                <div class="onecol"></div>
+                <div class="tencol">
+                    <div class="contatos">
+                        <a name='contatos'></a>
+                        <span class="email">helenardp@gmail.com </span>
+                        <span class="social">
+                            <span class="linkedin"><a title="LinkedIn" target="_blank" href="http://www.linkedin.com/pub/helena-rodrigues/5a/68b/6b6"></a></span>
+                            <span class="behance"><a title="Behance" target="_blank" href="http://www.behance.net/helenarodrigues"></a></span>
+                            <span class="flickr"><a title="Flickr" target="_blank" href="http://www.flickr.com/photos/helenarodrigues/sets/"></a></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="onecol"></div>
+                <div class="tencol">
+                    <div class="info">
+                        <a name='about'></a>
+                        <div class="pessoal">
+                            <h6>Helena Rodrigues</h6>
+                            <p>
+                            {{ sobre }}
+                            </p>
+                        </div>
+                        <div class="tecnicas">
+                            <h6>Habilidades e Qualificações</h6>
+                            <p>
+                            {{ qualificacoes }}
+                            </p>
+                        </div>
+                        <div class="profissinal">
+                            <h6>Experiências Anteriores</h6>
+                            <p>
+                            {{ experiencias }}
+                            </p>
+                        </div>
+                        <span class="back"><a href="#topo"></a></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            $(function () {
+                $('.item').each(function(){
+                    $(this).galeria();
+                });
+            });
+
+        </script>
+    </body>
+</html>
